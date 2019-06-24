@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+		
+        {% if form %}
+		    <div class="col-md-4 col-lg-offset-4">
+			        {{ wtf.quick_form(form) }}
+			</div>
+		{% endif %}
+		
+
+	     <!-- {{ form.hidden_tag() }}
+	     {{ form.photo }}
+	     {% for error in form.photo.errors %}
+	         <span style="color: red;">{{ error }}</span>
+	     {% endfor %}
+	     {{ form.submit }} -->
+	
+    
+{% endblock %}
+
+<!-- <form id='fileUpload' enctype = "multipart/form-data" method='post'>
+	    <input id="fileInput" name="fileToUpload" type="file"/>
+	    <input type="submit">
+	</form> -->
