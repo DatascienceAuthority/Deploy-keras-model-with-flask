@@ -1,7 +1,7 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-    {% if title %}{{ title }} - Predict{% else %}Welcome to Cactus Prediction{% endif %}
+    Welcome to Cactus Prediction
 {% endblock %}
 
 {% block navbar %}
@@ -16,11 +16,6 @@
                 </button>
                 <a class="navbar-brand" href="{{ url_for('predict') }}">Cactus Prediction</a>
             </div>
-            <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('predict') }}">Home</a></li>
-                </ul>
-            </div> -->
         </div>
     </nav>
 {% endblock %}

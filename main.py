@@ -7,7 +7,6 @@ import os
 from PIL import Image
 import numpy as np
 from base64 import b64encode
-#from scipy.misc import imresize
 
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
@@ -55,10 +54,7 @@ def predict():
 		img = preprocess(img)
 		img = np.expand_dims(img, axis=0)
 		prediction = saved_model.predict_classes(img)
-		print("The prediction is")
-		print(prediction[0][0])
-		print(type(prediction[0][0]))
-		print(prediction[0][0]==0)
+
 		if (prediction[0][0]==0):
 			result = "CACTUS"
 		else:
@@ -67,39 +63,11 @@ def predict():
 		byteIO = BytesIO()
 		original_img.save(byteIO, format=original_img.format)
 		byteArr = byteIO.getvalue()
-		#byteArr = bytearray(image_stream)
 		encoded = b64encode(byteArr)
-		print(encoded)
-		mime = "image/jpeg"
-		uri = "data:%s;base64,%s" % (mime, encoded)
-		print(uri)
+
 		return render_template('result.html', result=result, encoded_photo=encoded.decode('ascii'))
 
 	return render_template('index.html', form=form)
-
-	# if request.method == 'GET':
-	# 	return render_template("index.html")
-	# else:
-	# 	#bytes = request.files["fileToUpload"]
-	# 	#print(bytes.read)
-	# 	#img = open_image(BytesIO(bytes))
-	# 	#print(bytes)
-	# 	#u img = Image.open(request.files['fileToUpload'].stream)
-	# 	#u img = image.img_to_array(img)
-	# 	#u img = preprocess(img)
-	# 	"""
-	# 	img = img.resize((100,100),Image.ANTIALIAS)
-	# 	y = img_to_array(img)
-	# 	print(y)
-	# 	y = y/255
-	# 	y = np.expand_dims(y, axis=0)
-	# 	"""
-	# 	#u img = np.expand_dims(img, axis=0)
-	# 	#u prediction = saved_model.predict_classes(img)
-	# 	print("The prediction is")
-	# 	#u print(prediction)
-	# 	return "success"
-
 
 if __name__ == '__main__':
 	app.run(debug=True)
